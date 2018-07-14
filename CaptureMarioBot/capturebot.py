@@ -44,6 +44,7 @@ def tweetImage(url, username, status_id):
             api.update_with_media('game_over.jpg', status='@{0} No faces detected; for best results, use clear, full human faces! #SuperMarioOdyssey #NintendoSwitch'.format(username), in_reply_to_status_id=status_id)
     else:
         print("unable to download image")
+    i.close() # close only once we're completely done with Image
 
 # detect all the faces (and their features) in an image, and capture them all;
 # save the result as an image that will be uploaded in with the bot's Tweet
@@ -62,7 +63,6 @@ def captureImage(filename):
 
 # Watermark for to increase viral potential
 def addLogo(image):
-    logo = Image.open("logo.png")
     mark = Image.open("watermark.png")
     width, height = image.size
     mwidth, mheight = mark.size
