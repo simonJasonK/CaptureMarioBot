@@ -42,9 +42,9 @@ def tweetImage(url, username, status_id):
         # for images where the bot fails
         else:
             api.update_with_media('game_over.jpg', status='@{0} No faces detected; for best results, use clear, full human faces! #SuperMarioOdyssey #NintendoSwitch'.format(username), in_reply_to_status_id=status_id)
+        i.close() # close only once we're completely done with Image
     else:
         print("unable to download image")
-    i.close() # close only once we're completely done with Image
 
 # detect all the faces (and their features) in an image, and capture them all;
 # save the result as an image that will be uploaded in with the bot's Tweet
@@ -59,6 +59,7 @@ def captureImage(filename):
         captureFace(selfie, imageMap, loc, facesLandmarks[idx])
     addLogo(selfie)
     selfie.save('captured_goomba.jpg')
+    # blank string = success
     return ""
 
 # Watermark for to increase viral potential
